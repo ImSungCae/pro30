@@ -22,17 +22,13 @@ import com.myspring.pro30.member.service.MemberService;
 import com.myspring.pro30.member.vo.MemberVO;
 
 
-// @Controller를 이용해 MemberControllerImpl 클래스에 대해 id가 
-// memberController인 빈을 자동 생성합니다.
 @Controller("memberController")
-@EnableAspectJAutoProxy // 애너테이션을 적용해서 AOP 기능 활성
+@EnableAspectJAutoProxy 
 public class MemberControllerImpl implements MemberController{
 	private static final Logger logger =  LoggerFactory.getLogger(MemberControllerImpl.class);
 	
-//	@Autowired를 이용해 id가 memberSErvice인 빈을 자동 주입
 	@Autowired
 	private MemberService memberService;
-//	@Autowired를 이용해 id가 memberVO인 빈을 자동 주입
 	@Autowired
 	private MemberVO memberVO;
 	
@@ -47,15 +43,14 @@ public class MemberControllerImpl implements MemberController{
 	}
 	
 	
-// 	두 단계로 요청 시 바로 해당 메서드를 호출하도록 매핑합니다.
 	@Override
 	@RequestMapping(value="/member/listMembers.do", method = RequestMethod.GET)
 	public ModelAndView listMembers(HttpServletRequest request, HttpServletResponse response) throws Exception {
 //		String viewName = getViewName(request);
 		String viewName = (String)request.getAttribute("viewName");
 		System.out.println(viewName);
-		logger.info("info 레벨 : viewName = " + viewName);
-		logger.debug("debug 레벨 : viewName = " + viewName);
+		logger.info("info  : viewName = " + viewName);
+		logger.debug("debug  : viewName = " + viewName);
 		List membersList = memberService.listMembers();
 		ModelAndView mav = new ModelAndView(viewName);
 		mav.addObject("membersList", membersList);
@@ -79,7 +74,6 @@ public class MemberControllerImpl implements MemberController{
 		ModelAndView mav = new ModelAndView("redirect:/member/listMembers.do");
 		return mav;
 	}
-//	정규식을 이용해 요청명이 Form.do로 끝나면 form()메서드를 호출합니다.
 	@RequestMapping(value = "/member/login.do" , method = RequestMethod.POST)
 	public ModelAndView login(@ModelAttribute("member") MemberVO member,
 			RedirectAttributes rAttr,

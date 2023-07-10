@@ -15,6 +15,7 @@
   <title>글목록창</title>
   <script>
   	function fn_articleForm(isLogOn,articleForm,loginForm) {
+  		console.log(isLogOn);
   		if(isLogOn != '' && isLogOn != 'false'){
   			/* 로그인 상태이면 글쓰기창으로 이동 */
   			location.href = articleForm; 

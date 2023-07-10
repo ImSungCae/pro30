@@ -13,7 +13,7 @@ public interface BoardController {
 	public ResponseEntity addNewArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse resp) throws Exception;
 	public ModelAndView viewArticle(@RequestParam("articleNO") int articleNO,
 			HttpServletRequest req, HttpServletResponse resp) throws Exception;
-	public ModelAndView removeArticle(@RequestParam("articleNO") int articleNO,
-			HttpServletRequest req, HttpServletResponse resp) throws Exception;
 	public ResponseEntity modArticle(MultipartHttpServletRequest multipartRequest, HttpServletResponse resp) throws Exception;
+	public ResponseEntity removeArticle(@RequestParam("articleNO") int articleNO,
+			HttpServletRequest req, HttpServletResponse resp) throws Exception;
 }
